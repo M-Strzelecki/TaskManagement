@@ -38,10 +38,7 @@ const App = () => {
           task._id === currentTaskId ? { ...task, title, description } : task
         );
         setTasks(updatedTasks);
-        setIsEditing(false);
-        setTitle('');
-        setDescription('');
-        setCurrentTaskId(null);
+        resetForm();
       }
     } else {
       // Create a new task
@@ -82,6 +79,14 @@ const App = () => {
     setCurrentTaskId(task._id);
   };
 
+  // Reset the form after editing
+  const resetForm = () => {
+    setIsEditing(false);
+    setTitle('');
+    setDescription('');
+    setCurrentTaskId(null);
+  };
+
   return (
     <div className="App">
       <h1>Task Manager</h1>
@@ -102,6 +107,7 @@ const App = () => {
           required
         />
         <button type="submit">{isEditing ? 'Update Task' : 'Add Task'}</button>
+        {isEditing && <button type="button" onClick={resetForm}>Cancel Edit</button>}
       </form>
 
       <ul>
