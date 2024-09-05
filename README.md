@@ -11,7 +11,6 @@ This is a simple full-stack task management app built with a Node.js backend and
 ## API Endpoints
 
 ### Get All Tasks
-    ```bash
     GET /api/tasks
 
 ### .....
