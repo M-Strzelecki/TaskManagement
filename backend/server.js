@@ -1,25 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors'); // Import CORS middleware
 const taskRoutes = require('./routes/taskRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-const cors = require('cors');
 
-const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
-
-//CORS
+// Enable CORS before defining any routes
 app.use(cors());
 
-// Middleware
+// Middleware for JSON parsing
 app.use(express.json());
 
 // Routes
-app.use('/api/tasks', taskRoutes);
+app.use('/api/auth', authRoutes); // Auth routes
+app.use('/api/tasks', taskRoutes); // Task routes
 
 // MongoDB connection
 mongoose

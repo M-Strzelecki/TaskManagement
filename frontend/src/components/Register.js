@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const { login } = useContext(AuthContext);
@@ -7,6 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +24,8 @@ const Register = () => {
     const data = await response.json();
 
     if (response.ok) {
-      login(data, data.token); // Log in the user after registration
+      login(data, data.token);
+      navigate('/welcome'); // Log in the user after registration
     } else {
       setError(data.message);
     }

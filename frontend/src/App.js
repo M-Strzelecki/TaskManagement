@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import TaskList from './components/TaskList';
+import Profile from './components/Profile';
+import WelcomeScreen from './components/WelcomeScreen'; // Import the WelcomeScreen
 import { AuthContext } from './context/AuthContext';
 
 const App = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <Router>
@@ -15,7 +17,8 @@ const App = () => {
           {user ? (
             <div>
               <span>Welcome, {user.name}</span>
-              <button onClick={() => logout()}>Logout</button>
+              <a href="/welcome">Dashboard</a> {/* Link to WelcomeScreen */}
+              <button onClick={logout}>Logout</button>
             </div>
           ) : (
             <div>
@@ -24,25 +27,17 @@ const App = () => {
           )}
         </nav>
 
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <PrivateRoute path="/tasks" component={TaskList} user={user} />
-          <Redirect from="/" to="/tasks" />
-        </Switch>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/welcome" element={user ? <WelcomeScreen /> : <Navigate to="/welcome" />} />
+          <Route path="/tasks" element={user ? <TaskList /> : <Navigate to="/login" />} />
+          <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/welcome" />} />
+        </Routes>
       </div>
     </Router>
   );
 };
-
-// Private route to protect task management
-const PrivateRoute = ({ component: Component, user, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      user ? <Component {...props} /> : <Redirect to="/login" />
-    }
-  />
-);
 
 export default App;
