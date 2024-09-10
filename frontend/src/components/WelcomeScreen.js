@@ -18,6 +18,11 @@ const WelcomeScreen = () => {
       <button onClick={() => navigate('/tasks')}>Go to Task List</button>
       <button onClick={() => navigate('/profile')}>Manage Profile</button>
       <button onClick={handleLogout}>Logout</button>
+
+      <button className="btn btn-primary">Go to Task List</button> 
+      <button className="btn btn-success">Manage Profile</button>
+      <button className="btn btn-danger">Logout</button>
+
     </div>
   );
 };
