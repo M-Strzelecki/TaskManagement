@@ -4,7 +4,7 @@ const User = require('../models/userModel');
 const { protect } = require('../middleware/authMiddleware');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-
+//
 // Generate JWT Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
