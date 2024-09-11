@@ -31,27 +31,33 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">Email</label>
         <input
           type="email"
+          className="form-control"
+          id="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">Password</label>
         <input
           type="password"
+          className="form-control"
+          id="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+      </div>
+      <button type="submit" className="btn btn-primary w-100">Login</button>
+    </form>
   );
 };
 
