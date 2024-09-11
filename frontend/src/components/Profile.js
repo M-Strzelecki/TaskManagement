@@ -68,39 +68,63 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <h2>Profile</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>Profile updated successfully!</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="New Password (optional)"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button type="submit">Update Profile</button>
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Profile</h2>
+
+      <form onSubmit={handleSubmit} className="mb-4">
+        <div className="row g-3">
+          <div className="col-md-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="col-md-3">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="col-md-3">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="New Password (optional)"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="col-md-3">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="text-center mt-4">
+          <button type="submit" className="btn btn-success">
+            Update Profile
+          </button>
+        </div>
       </form>
+
+      <div className="text-center mt-4">
+        <button className="btn btn-secondary" onClick={() => navigate('/welcome')}>
+          Return to Home
+        </button>
+      </div>
     </div>
   );
 };

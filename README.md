@@ -31,6 +31,7 @@ A full-stack task management application with user authentication, profile manag
 - React Router
 - Context API
 - Fetch API
+- Bootstrap
 
 **Backend**:
 - Node.js
@@ -128,6 +129,7 @@ The frontend requires the following npm packages:
 - `react-dom`: React library for DOM rendering.
 - `react-router-dom`: For routing and navigation between pages.
 - `react-scripts`: Scripts for running and building the React app.
+- `bootstrap` : Frontend UX design.
 
 ---
 

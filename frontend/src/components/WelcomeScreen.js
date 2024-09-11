@@ -12,13 +12,20 @@ const WelcomeScreen = () => {
   };
 
   return (
-    <div>
-      <h2>Welcome, {user.name}!</h2>
+    <div className="container text-center mt-5">
+      <h1>Welcome, {user.name}!</h1>
       <p>Select an option below:</p>
-      <button onClick={() => navigate('/tasks')}>Go to Task List</button>
-      <button onClick={() => navigate('/profile')}>Manage Profile</button>
-      <button onClick={handleLogout}>Logout</button>
-
+      <div className="d-flex justify-content-center mt-4">
+        <button className="btn btn-primary mx-2" onClick={() => navigate('/tasks')}>
+          View Tasks
+        </button>
+        <button className="btn btn-success mx-2" onClick={() => navigate('/profile')}>
+          Manage Profile
+        </button>
+        <button className="btn btn-danger mx-2" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

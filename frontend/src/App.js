@@ -25,9 +25,6 @@ const App = () => {
                 {user ? (
                   <>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/tasks">Tasks</Link>
-                    </li>
-                    <li className="nav-item">
                       <button className="btn btn-danger" onClick={logout}>Logout</button>
                     </li>
                   </>
@@ -47,40 +44,40 @@ const App = () => {
         </nav>
 
         {/* Card for Login or Register */}
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-          <div className="card" style={{ width: '400px' }}>
-            <div className="card-body">
-              {isLogin ? (
-                <>
-                  <h5 className="card-title text-center">Login</h5>
-                  <Login />
-                  <div className="text-center mt-3">
-                    <p>Don't have an account? <a href="#" onClick={() => setIsLogin(false)}>Register here</a></p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <h5 className="card-title text-center">Register</h5>
-                  <Register />
-                  <div className="text-center mt-3">
-                    <p>Already have an account? <a href="#" onClick={() => setIsLogin(true)}>Login here</a></p>
-                  </div>
-                </>
-              )}
+        {!user ? (
+          <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
+            <div className="card shadow-sm" style={{ width: '400px', padding: '20px' }}>
+              <div className="card-body">
+                {isLogin ? (
+                  <>
+                    <h5 className="card-title text-center mb-4">Login</h5>
+                    <Login />
+                    <div className="text-center mt-3">
+                      <p>Don't have an account? <a href="#" onClick={() => setIsLogin(false)}>Register here</a></p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h5 className="card-title text-center mb-4">Register</h5>
+                    <Register />
+                    <div className="text-center mt-3">
+                      <p>Already have an account? <a href="#" onClick={() => setIsLogin(true)}>Login here</a></p>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="container mt-5">
-          <Routes>
-            {/* <Route path="/welcome" element={user ? <WelcomeScreen /> : <Navigate to="/login" />} /> */}
-            {/* <Route path="/login" element={<Login />} /> */}
-            {/* <Route path="/register" element={<Register />} /> */}
-            <Route path="/tasks" element={user ? <TaskList /> : <Navigate to="/login" />} />
-            <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-            {/* <Route path="*" element={<Navigate to="/welcome" />} /> */}
-          </Routes>
-        </div>
+        ) : (
+          <div className="container mt-5">
+            <Routes>
+              <Route path="/welcome" element={user ? <WelcomeScreen /> : <Navigate to="/login" />} />
+              <Route path="/tasks" element={user ? <TaskList /> : <Navigate to="/login" />} />
+              <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+              <Route path="*" element={<Navigate to="/welcome" />} />
+            </Routes>
+          </div>
+        )}
       </div>
     </Router>
   );
